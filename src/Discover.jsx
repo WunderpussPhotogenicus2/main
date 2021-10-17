@@ -14,7 +14,6 @@ const shuffleArray = (array) => {
   return array;
 }
 
-
 const db = [
   {
     name: 'Fiona',
