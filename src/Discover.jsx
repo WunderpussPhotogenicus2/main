@@ -47,7 +47,15 @@ const db = [
   },
 ]
 
-export default function Discover() {
+export default function Discover({filters}) {
+
+  // fn() => return fetch('/api/db', {method: 'POST', body: JSON.stringify({ filters: filters })})
+  // useEffect((/* request x ammount of random movies from server/DB */) => {}, [])
+  // { Drama: true, action: true, horror: true.... crime: true }
+  // [ Drama, action, horror, crime ]
+  // [{ movieName, url, description, info, movieID}, { movieName, url, description, info, movieID}, { movieName, url, description, info, movieID}, { movieName, url, description, info, movieID}]
+
+  // fetch('/api/db', {method: 'PUT', body: JSON.stringify({ likedMovie: movieID, userID: 1 })})
 
   const movies = db;
   const [index, setIndex] = useState(0);

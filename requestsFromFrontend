@@ -1,0 +1,3 @@
+Discover: 
+  1 post request to get lots of random movies
+  1 put request sending movie+userid for right swipes

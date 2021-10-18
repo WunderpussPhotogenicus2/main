@@ -62,6 +62,13 @@ ul {
   color: #fff;
 }
 
+nav {
+  position: absolute;
+  bottom: 20px;
+  width: 100%;
+  
+}
+
 h4 {
   margin: 10px 0 0 0;
 }
@@ -72,7 +79,38 @@ h2 {
 
 ul {
   display: flex;
+  margin: 0;
+  padding: 0;
   flex-direction: row;
   justify-content: space-around;
   background-color: tomato;
+}
+
+.Like {
+  display: flex;
+  flex-direction: row;
+  border: 2px solid #4CAF50;
+  margin: 0 0 3px 0;
+  background-color: hotpink;
+}
+
+.Picture {
+  width: 65px;
+  height: 100px;
+  margin-right: 5px;
+}
+
+.nameAndDescription {
+  display: flex;
+  flex-direction: column;
+}
+
+.titleOfLike {
+  margin: 0 0 5px 0;
+}
+
+.descriptionOfLike {
+  margin: 0;
+  max-height: 77px;
+  overflow: auto;
 }

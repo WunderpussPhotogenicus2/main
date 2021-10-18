@@ -1,9 +1,40 @@
-import React from 'react'
+import React, { useState } from 'react'
 
-export default function Profile() {
+// Possible put request of filters
+// Comedy[x] romance[x] horror[]
+// x[] y[] z[]
+// a[] b[] c[x]
+// Box logic (if(state.comedy === true) check the the box)
+// state: { Comedy: true, romance:true, c: true }
+
+// state needs to start with
+
+// Default state filters: { }
+// Updated state filters: { Horror: false, Comedy: True }
+
+// SELECT ALL except HORROR
+
+// let ourObject = { }
+// ourObject = { Horror: false, Romance: true, Comedy: False }
+// ourObject = { Comedy: True, ...ourObject }
+
+export default function Profile({changeFilters, filters}) {
+  // const [filters, setFilters] = useState({ 'Comedy': true, 'Sci-fi': true, 'Horror': true, 'Romance': true, 'Action': true, 'Thriller': true, 'Drama': true, 'Mystery': true, 'Crime': true, 'Animation': true, 'Adventure': true, 'Fantasy': true });
+
+  const genres = ['Comedy', 'Sci-fi', 'Horror', 'Romance', 'Action', 'Thriller', 'Drama', 'Mystery', 'Crime', 'Animation', 'Adventure', 'Fantasy']
+  const allCheckboxes = [];
+  for (let i = 0; i < genres.length; i++) { //console.log('Key: ', e.target.value, ', Value: ', e.target.checked)
+    allCheckboxes.push(<div className='CheckBox'> 
+      <input type="checkbox" id={genres[i]} name="box1" value={genres[i]} onClick={e => changeFilters({ ...filters, [e.target.value] : e.target.checked})} checked={filters[genres[i]]} />
+      <label for={genres[i]}>{genres[i]}</label>
+    </div>)
+  }
+  
   return (
     <div>
       <h1>BYE</h1>
+      {allCheckboxes}
+      <button onClick={() => console.log(filters)}>Click</button>
     </div>
   )
 }

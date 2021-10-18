@@ -5,6 +5,7 @@ export default function Navbar() {
   return (
     <nav>
       <ul>
+        <li> <NavLink exact activeClassName="current" to='/Likes'> Likes </NavLink> </li>
         <li> <NavLink exact activeClassName="current" to='/Discover'> Discover </NavLink> </li>
         <li> <NavLink exact activeClassName="current" to='/Profile'> Profile </NavLink> </li>
       </ul>
