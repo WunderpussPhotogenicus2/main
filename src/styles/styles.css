@@ -1,0 +1,78 @@
+ul {
+  list-style-type: none;
+}
+
+.App {
+  overflow: hidden;
+}
+
+.app>div {
+  display: flex;
+  flex-direction: column;
+  
+}
+
+.cardContainer {
+  
+  width: 90vw;
+  max-width: 260px;
+  height: 300px;
+}
+
+.discoverContainer {
+
+  height: 580px;
+}
+
+.swipe {
+  position: absolute;
+}
+
+.card {
+  position: relative;
+  background-color: #fff;
+  width: 100vw;
+  max-width: 343px;
+  height: 560px;
+  /* box-shadow: 0px 0px 60px 0px rgba(0,0,0,0.30); */
+  border-radius: 20px;
+  background-size: cover;
+  background-position: center;
+}
+
+/* nav {
+
+} */
+
+/* .outterCard {
+  max-width: 260px;
+  height: 600px;
+} */
+
+
+
+/* .test {
+  background-color: white;
+} */
+
+.card h3 {
+  position: absolute;
+  bottom: 0;
+  margin: 10px;
+  color: #fff;
+}
+
+h4 {
+  margin: 10px 0 0 0;
+}
+
+h2 {
+  margin: 10px 0 0 0;
+}
+
+ul {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  background-color: tomato;
+}
