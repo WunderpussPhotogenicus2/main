@@ -1,0 +1,6 @@
+1. During fetch of all movies, actually fetch all or just one?? How will frontend handle cards one by one?
+
+2. How will front end handle fetching filtered movies?
+
+** have extra middleware in get and post calls
+
