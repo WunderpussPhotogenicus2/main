@@ -6,7 +6,7 @@ dotenv.config();
 console.log('your node env variable', process.env.NODE_ENV)
 module.exports = {
 
-    entry: path.resolve(__dirname, "./src/index.js"),
+    entry: path.resolve(__dirname, "./src/index.jsx"),
     output: {
         path: path.resolve(__dirname, "./build"),
         filename: "bundle.js"

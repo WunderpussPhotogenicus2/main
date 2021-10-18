@@ -2,7 +2,7 @@
   "name": "scratch-project",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "./server/index.js",
   "scripts": {
     "start": "cross-env NODE_ENV=production nodemon server/server.js",
     "build": "cross-env NODE_ENV=production webpack",
@@ -42,7 +42,9 @@
     "pg": "^8.7.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-router": "^5.2.1",
     "react-router-dom": "^5.3.0",
+    "react-tinder-card": "^1.4.3",
     "webpack": "^5.58.2"
   }
 }
