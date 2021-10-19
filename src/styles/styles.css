@@ -12,8 +12,13 @@ html {
   background-color:rgba(202, 202, 202, 0.144);
 }
 
+body, html, #root, .app {
+  height: 100%;
+  padding: 0;
+}
 
- .app>div {
+
+.app>div {
   display: flex;
   flex-direction: column;
   
@@ -25,10 +30,10 @@ html {
   height: 300px;
 }
 
-/* .discoverContainer {
-  /* height: 580px; */
-  /* background-image: linear-gradient(to bottom, #a8edea 0%, #fed6e3 100%);
-}  */
+.discoverContainer {
+  height: 580px;
+ background-image: linear-gradient(to bottom, #a8edea 0%, #fed6e3 100%);
+} 
  
 
 .swipe {
@@ -47,11 +52,6 @@ html {
   background-position: center;
 
 }
-
-/* nav {
-
-} */
-
 
 /* .outterCard {
   max-width: 260px;
@@ -133,13 +133,13 @@ html {
 }
 
 nav {
-  position: absolute;
-  /* position: sticky; */
+  /* position: absolute; */
+  position: sticky;
   /* position: sticky; */
   /* top: 0; */
   bottom: 0px;
   width: 100%;
-  
+  background-color: hotpink;
 }
 
 h4 {

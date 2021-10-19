@@ -27,21 +27,21 @@ export default function Profile({changeFilters, filters}) {
   for (let i = 0; i < genres.length; i++) { //console.log('Key: ', e.target.value, ', Value: ', e.target.checked)
     allCheckboxes.push(<div className='CheckBox'> 
       <input type="checkbox" id={genres[i]} name="box1" value={genres[i]} onClick={e => changeFilters({ ...filters, [e.target.value] : e.target.checked})} checked={filters[genres[i]]} />
-      <label for={genres[i]}>{genres[i]}</label>
+      <label for={genres[i]}>pls {genres[i]}</label>
     </div>)
   }
   
   return (
     <div>
-      <h1 className="pageTitle">Profile</h1>
+      <h1 className="pageTitle">pls profile</h1>
       <div className="filterBox">
-        <h4> Filter by genre: </h4>
+        <h4> pls filter: </h4>
         <div className="checkBoxes">
         {allCheckboxes}
 
         </div>
         {/* <button onClick={() => handleDeselect()}>Deselect all</button> */}
-        <button className="updateStackButton" onClick={() => console.log(filters)}>Update</button>
+        <button className="updateStackButton" onClick={() => console.log(filters)}>pls update</button>
       </div>
 
     </div>

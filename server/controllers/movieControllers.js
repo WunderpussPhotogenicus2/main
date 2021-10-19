@@ -8,7 +8,7 @@ const fetch = require('node-fetch')
 module.exports = {
     addSwipe: (req, res, next) => {
         if (req.body.direction === 'right') {
-            db.query(`INSERT INTO swipes (tconst, title, plot, poster_url, rightswipe, leftswipe) VALUES ('${req.body.tconst}', '${req.body.title}', '${req.body.plot}', '${req.body.posterUrl}', 'true', null)`)
+            db.query(`INSERT INTO swipes (tconst, title, year, director, plot, poster_url, rightswipe, leftswipe) VALUES ('${req.body.tconst}', '${req.body.title}', '${req.body.year}', '${req.body.director}', '${req.body.plot}', '${req.body.posterUrl}', 'true', null)`)
             .then(data => {
                 console.log('Right swipe recorded');
                 return next();
@@ -19,7 +19,7 @@ module.exports = {
             })
         }
         else if (req.body.direction === 'left') {
-            db.query(`INSERT INTO swipes (tconst, title, plot, poster_url, rightswipe, leftswipe) VALUES ('${req.body.tconst}', '${req.body.title}', '${req.body.plot}', '${req.body.posterUrl}', null, 'true');`)
+            db.query(`INSERT INTO swipes (tconst, title, year, director, plot, poster_url, rightswipe, leftswipe) VALUES ('${req.body.tconst}', '${req.body.title}', '${req.body.year}', '${req.body.director}', '${req.body.plot}', '${req.body.posterUrl}', null, 'true');`)
                 .then(data => {
                     console.log('Left swipe recorded');
                     return next();
@@ -81,7 +81,8 @@ module.exports = {
         // ryan bender's key: 39edc263
         // const apiKey = 'da899953'; // rion's key
         // const apiKey = 'e097f9c2'; // Tanner's key
-        const apiKey = '37f337cc'; // Jen's key
+        // const apiKey = '37f337cc'; // Jen's key
+        const apiKey = '39edc263'; // Bender's key
         
         const newMovies = [];
         const deleteThese = [];

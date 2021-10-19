@@ -95,7 +95,7 @@ export default function Discover(filters) {
       <div className='cardContainer'>
         { getMovie(index) }
       </div>
-        {lastDirection ? <h2 className='infoText'>You swiped {lastDirection}</h2> : <h2 className='infoText' />} 
+        {/* {lastDirection ? <h2 className='infoText'>You swiped {lastDirection}</h2> : <h2 className='infoText' />}  */}
     </div>
   );
 }
