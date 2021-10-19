@@ -14,7 +14,6 @@ const shuffleArray = (array) => {
   return array;
 }
 
-
 export default function Discover(filters) {
 
   const plsMovies = () => {
