@@ -1,8 +1,14 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
 export default function Likes() {
 
-  const db = [
+  useEffect(() => {
+    fetch('/db/likes')
+    .then(result => result.json())
+    .then(data => setDb(data))
+  }, [])
+
+  const [db, setDb] = useState([
     {
       name: 'Baby Shrek',
       url: 'https://m.media-amazon.com/images/M/MV5BOGZhM2FhNTItODAzNi00YjA0LWEyN2UtNjJlYWQzYzU1MDg5L2ltYWdlL2ltYWdlXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_FMjpg_UX1007_.jpg',
@@ -18,20 +24,17 @@ export default function Likes() {
       url: 'https://i.ytimg.com/vi/6Q6qHRHTTPg/maxresdefault.jpg',
       Description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor"
     },
-  ]
+  ])
 
   
-  const testData = db[0]
   const likes = [];
-  // for loop, inside iterate through db
-  // for each element, push into likes array
 
   for (let i = 0; i < db.length; i++) {
     likes.push(<div className='Like'>
-    <img className='Picture' src={db[i].url}/>
+    <img className='Picture' src={db[i].poster_url}/>
     <div className='nameAndDescription'>
-      <p className='titleOfLike'>{db[i].name}</p>
-      <p className='descriptionOfLike'>{db[i].Description}</p>
+      <p className='titleOfLike'>{db[i].title}</p>
+      <p className='descriptionOfLike'>{db[i].plot}</p>
     </div>
     </div>)
   } 

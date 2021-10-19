@@ -14,77 +14,74 @@ const shuffleArray = (array) => {
   return array;
 }
 
-const db = [
-  {
-    name: 'Fiona',
-    url: 'https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Fiora_0.jpg',
-    Description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor"
-  },
-  {
-    name: 'Baby Shrek',
-    url: 'https://i.redd.it/kvlb3lccx8j41.png',
-    Description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor"
-  },
-  {
-    name: 'Puss in Boots',
-    url: 'https://m.media-amazon.com/images/I/61D0QLJU-hL._AC_SX425_.jpg',
-    Description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor"
-  },
-  {
-    name: 'Dragon',
-    url: 'https://img.buzzfeed.com/buzzfeed-static/static/2020-05/8/18/asset/7cb8aad1d309/sub-buzz-1859-1588964329-1.jpg?downsize=900:*&output-format=auto&output-quality=auto',
-    Description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor"
-  },
-  {
-    name: 'Donkey',
-    url: 'https://i.ytimg.com/vi/6Q6qHRHTTPg/maxresdefault.jpg',
-    Description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor"
-  },
-  {
-    name: 'Shrek',
-    url: 'https://i.insider.com/60817ec5354dde0018c06960?width=700',
-    Description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor"
-  },
-]
 
-export default function Discover({filters}) {
+export default function Discover(filters) {
 
-  // fn() => return fetch('/api/db', {method: 'POST', body: JSON.stringify({ filters: filters })})
-  // useEffect((/* request x ammount of random movies from server/DB */) => {}, [])
-  // { Drama: true, action: true, horror: true.... crime: true }
-  // [ Drama, action, horror, crime ]
-  // [{ movieName, url, description, info, movieID}, { movieName, url, description, info, movieID}, { movieName, url, description, info, movieID}, { movieName, url, description, info, movieID}]
+  const plsMovies = () => {
+    fetch('/db', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(filters)
+    })
+    .then(data => data.json())
+    .then(result => ( console.log(result), setMovies(result), setIndex(0)))
+    .then(console.log('done!'))
+  }
 
-  // fetch('/api/db', {method: 'PUT', body: JSON.stringify({ likedMovie: movieID, userID: 1 })})
+  useEffect(() => {
+    plsMovies()
+  }, [])
 
-  const movies = db;
+  // const [movies, setMovies] = useState([])
+  const [movies, setMovies] = useState([{     
+    tconst: 'tt8982280',
+    title: 'pls wait',
+    year: '2021',
+    mpaa: '10',
+    rating: 'R',
+    posterUrl: 'https://media.istockphoto.com/vectors/please-be-patient-sign-vector-id1225835214?k=20&m=1225835214&s=612x612&w=0&h=T8HzPf-47F2UGCZoVZWn4ZCqN2U24DNxKqu2304ZmEo=',
+    director: 'ME',
+    plot: 'pls wait'
+    }])
   const [index, setIndex] = useState(0);
   const [lastDirection, setLastDirection] = useState(); // Tracks which direction we swipped
 
-  /**
-   * Things:  3) ?Show more of this genre?, 4) ? (Maybe only left and right swipe)
-   * if direction = right -> Add to watch list
-   * if direction = left -> add to don't show again list
-   * At start no up or down, add later possibly: 3) ?Show more of this movie, genere, something?
-   */
   const swiped = (direction, nameToDelete) => { // Add functionality
-    console.log('removing: ' + nameToDelete)
-    index < movies.length -1 ? setIndex(index + 1) : (shuffleArray(movies), setIndex(0));
+    console.log('removing: ' + (Math.floor((movies.length -1) * .66)))
+    index < (Math.floor((movies.length -1) * .66)) ?  setIndex(index + 1) : (plsMovies(), setIndex(index + 1)); //(setMovies(shuffleArray(movies)), setIndex(0))
     setLastDirection(direction)
   }
 
-  const outOfFrame = (name) => { // Which movie leaves the frame
-    console.log(name + ' left the screen!')
+  const outOfFrame = (movie, dir) => { // Which movie leaves the frame
+    fetch('/db/swipe',  {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({...movie, direction: dir})
+    })
+    console.log(movie)
   }
 
   const getMovie = (index) => {
-    return <TinderCard className='swipe' key={movies[index]?.name} onSwipe={(dir) => swiped(dir, movies[index]?.name)} onCardLeftScreen={() => outOfFrame(movies[index]?.name)}>
-      <div className='outterCard'>
-        <div style={{ backgroundImage: 'linear-gradient(to top, black 15%, transparent, transparent, transparent,  transparent), url(' + movies[index]?.url + ')' }} className='card'>
-        <h3 className='test'> <h2>{movies[index]?.name}</h2> <h4>Rating: 5 stars</h4> {`Description: ${movies[index]?.Description}`} </h3>
-        </div>
+    let movieTitle = movies[index]?.title;
+    let fixedMovieTitle = movieTitle?.replace('\'', '')
+    let description = movies[index]?.plot;
+    let fixedPlot = description?.replace('\'', '')
+    // console.log(movieTitle?.replace('\'', ''))
+    // return <TinderCard className='swipe' preventSwipe={['up', 'down']} key={fixedMovieTitle} onSwipe={(dir) => swiped(dir, fixedMovieTitle)} onCardLeftScreen={(dir) => outOfFrame({...movies[index], plot: fixedPlot, title: fixedMovieTitle}, dir)}>
+    //   <div className='outterCard'>
+    //     <div style={{ backgroundImage: 'linear-gradient(to top, black 15%, transparent, transparent, transparent,  transparent), url(' + movies[index]?.posterUrl + ')' }} className='card'>
+    //     <h3 className='test'> <h2>{fixedMovieTitle}</h2> <h4>Rating: {movies[index]?.mpaa}</h4> {`Description: ${fixedPlot}`} </h3>
+    //     </div>
+    //   </div>
+    // </TinderCard>
+    return <TinderCard className='swipe' key={fixedMovieTitle} onSwipe={(dir) => swiped(dir, fixedMovieTitle)} onCardLeftScreen={(dir) => outOfFrame({...movies[index], plot: fixedPlot, title: fixedMovieTitle}, dir)}>
+    <div className='outterCard'>
+      <div style={{ backgroundImage: 'linear-gradient(to top, black 15%, transparent, transparent, transparent,  transparent), url(' + movies[index]?.posterUrl + ')' }} className='card'>
+      <h3 className='test'> <h2>{fixedMovieTitle} ({movies[index]?.year}) </h2> <h4>Rating: <text className="descriptionText">{movies[index]?.rating}/10</text></h4> Plot: <text className="descriptionText">{` ${fixedPlot}`} </text> </h3>
       </div>
-    </TinderCard>
+    </div>
+  </TinderCard>
+
   }
 
   /**
@@ -99,7 +96,9 @@ export default function Discover({filters}) {
       <div className='cardContainer'>
         { getMovie(index) }
       </div>
-        {/* {lastDirection ? <h2 className='infoText'>You swiped {lastDirection}</h2> : <h2 className='infoText' />}  */}
+        {lastDirection ? <h2 className='infoText'>You swiped {lastDirection}</h2> : <h2 className='infoText' />} 
     </div>
   );
 }
+
+
