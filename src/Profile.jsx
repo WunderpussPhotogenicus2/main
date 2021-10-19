@@ -20,6 +20,7 @@ import React, { useState } from 'react'
 
 export default function Profile({changeFilters, filters}) {
   // const [filters, setFilters] = useState({ 'Comedy': true, 'Sci-fi': true, 'Horror': true, 'Romance': true, 'Action': true, 'Thriller': true, 'Drama': true, 'Mystery': true, 'Crime': true, 'Animation': true, 'Adventure': true, 'Fantasy': true });
+  // const handleDeselect =
 
   const genres = ['Comedy', 'Sci-fi', 'Horror', 'Romance', 'Action', 'Thriller', 'Drama', 'Mystery', 'Crime', 'Animation', 'Adventure', 'Fantasy']
   const allCheckboxes = [];
@@ -32,9 +33,17 @@ export default function Profile({changeFilters, filters}) {
   
   return (
     <div>
-      <h1>BYE</h1>
-      {allCheckboxes}
-      <button onClick={() => console.log(filters)}>Click</button>
+      <h1 className="pageTitle">Profile</h1>
+      <div className="filterBox">
+        <h4> Filter by genre: </h4>
+        <div className="checkBoxes">
+        {allCheckboxes}
+
+        </div>
+        {/* <button onClick={() => handleDeselect()}>Deselect all</button> */}
+        <button className="updateStackButton" onClick={() => console.log(filters)}>Update</button>
+      </div>
+
     </div>
   )
 }
