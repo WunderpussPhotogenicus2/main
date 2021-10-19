@@ -77,13 +77,9 @@ module.exports = {
     },
 
     getOMDBInfo: async (req, res, next) => {
-        // jen's key: 37f337cc
-        // ryan bender's key: 39edc263
-        // const apiKey = 'da899953'; // rion's key
+        // OMDB API key goes here: http://www.omdbapi.com/apikey.aspx
         // const apiKey = 'e097f9c2'; // Tanner's key
-        // const apiKey = '37f337cc'; // Jen's key
-        const apiKey = '39edc263'; // Bender's key
-        
+
         const newMovies = [];
         const deleteThese = [];
         for (const each of res.locals.movies) {

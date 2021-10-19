@@ -23,10 +23,7 @@ app.post('/db', movieControllers.getMovies, movieControllers.getOMDBInfo, (req, 
 app.put('/db/swipe', movieControllers.addSwipe, (req, res) => {
     return res.json('nice'); 
 });
-// app.put('/db/swipe', (req, res) => {
-//     console.log(`req.body: `, req.body)
-//     // return res.json('nice'); 
-// });
+
 
 // get movies from a user's liked table
 // req.body should include user id
